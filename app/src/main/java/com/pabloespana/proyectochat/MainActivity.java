@@ -1,12 +1,10 @@
 package com.pabloespana.proyectochat;
 
-import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Toolbar;
+import android.support.v7.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
         vP = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(vP);
 
-        /*// Adding Toolbar to Main screen          ERROR
+        // Adding Toolbar to Main screen          ERROR
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);*/
+        setSupportActionBar(toolbar);
 
         TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
         tabs.setupWithViewPager(vP);

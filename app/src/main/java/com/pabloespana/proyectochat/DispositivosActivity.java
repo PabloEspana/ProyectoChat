@@ -2,7 +2,8 @@ package com.pabloespana.proyectochat;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toolbar;
+import android.support.v7.widget.Toolbar;
+
 
 public class DispositivosActivity extends AppCompatActivity {
 
@@ -12,16 +13,15 @@ public class DispositivosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dispositivos);
 
         // Adding Toolbar to Main screen
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarDispositivos);
-        //setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayShowTitleEnabled(true);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarDispositivos);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    /*@Override
+    @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return false;
-    }*/
+    }
 }
