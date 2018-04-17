@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         vP = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(vP);
 
-        // Adding Toolbar to Main screen          ERROR
+        // Adding Toolbar to Main screen
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="25sp"
+        android:tint="@android:color/white"
         android:src="@drawable/add" />
 
 </FrameLayout>
