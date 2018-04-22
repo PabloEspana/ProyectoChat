@@ -24,4 +24,12 @@ public class DispositivosActivity extends AppCompatActivity {
         onBackPressed();
         return false;
     }
+
+    public void buscarDispositivos(){
+
+    }
+
+    public void mostrarDispositivos(){
+
+    }
 }
