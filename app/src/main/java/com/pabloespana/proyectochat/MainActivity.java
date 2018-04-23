@@ -2,6 +2,7 @@ package com.pabloespana.proyectochat;
 
 import android.bluetooth.BluetoothAdapter;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         comprobarBluetooth();
+        habilitarBluetooth();
         setContentView(R.layout.activity_main);
 
         sPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
@@ -55,4 +57,14 @@ public class MainActivity extends AppCompatActivity {
                     }).show();
         }
     }
+
+    public void habilitarBluetooth(){
+        int REQUEST_BLUETOOTH = 1;
+        if (!BluetoothAdapter.getDefaultAdapter().isEnabled()) {
+            Intent enableBT = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBT, REQUEST_BLUETOOTH);
+        }
+    }
+
+
 }
