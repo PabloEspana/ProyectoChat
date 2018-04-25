@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SectionsPageAdapter sPageAdapter;
     private ViewPager vP;
-    private BluetoothAdapter bluetoothAdapter;
+    private BluetoothAdapter bt;
 
 
     @Override
@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void comprobarBluetooth(){
-        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        if ( bluetoothAdapter == null) {
+        bt =  new BluetoohConnect().getBluetoothAdapter();
+        if ( bt == null) {
             new AlertDialog.Builder(this)
                     .setTitle("Lo sentimos!")
                     .setMessage("Su dispositivo no soporta Bluetooth")
@@ -62,11 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void habilitarBluetooth(){
         int REQUEST_BLUETOOTH = 1;
-        if (!bluetoothAdapter.isEnabled()) {
-            bluetoothAdapter.enable();
-            //Intent enableBT = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            //startActivityForResult(enableBT, REQUEST_BLUETOOTH);
-
+        if (!bt.isEnabled()) {
+            bt.enable();
         }
     }
 

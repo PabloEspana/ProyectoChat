@@ -14,4 +14,9 @@
         android:tint="@android:color/white"
         android:src="@drawable/add" />
 
+    <ListView
+        android:id="@+id/listaContact"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </FrameLayout>
