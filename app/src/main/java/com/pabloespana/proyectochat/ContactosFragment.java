@@ -1,7 +1,6 @@
 package com.pabloespana.proyectochat;
 
 
-import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,9 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +20,6 @@ import java.util.Set;
 
 public class ContactosFragment extends Fragment {
     Set<BluetoothDevice> Dispositivos;
-    String[] Contactos = {};
     ListView Listado;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,7 +45,7 @@ public class ContactosFragment extends Fragment {
 
     public void ListarContactos(){
         Dispositivos = new BluetoohConnect().getListContactBluetoh();
-        Listado = (ListView)getView().findViewById(R.id.listaContact);
+        Listado = (ListView) getView().findViewById(R.id.listaContacto);
         List<String> ListaDispositivos = new ArrayList<String>();
         for (BluetoothDevice device : Dispositivos){
             ListaDispositivos.add(device.getName()+"\n"+device.getAddress());

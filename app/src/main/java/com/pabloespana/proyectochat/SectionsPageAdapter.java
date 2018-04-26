@@ -3,7 +3,6 @@ package com.pabloespana.proyectochat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,5 +35,4 @@ public class SectionsPageAdapter extends FragmentPagerAdapter {
         return listadoFragments.size();
     }
 
-    //List = new Bl
 }

@@ -15,7 +15,7 @@
         android:src="@drawable/add" />
 
     <ListView
-        android:id="@+id/listaContact"
+        android:id="@+id/listaContacto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
