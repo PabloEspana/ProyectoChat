@@ -1,8 +1,6 @@
 package com.pabloespana.proyectochat;
 
-import android.bluetooth.BluetoothAdapter;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -12,16 +10,15 @@ import android.support.v7.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
+    BluetoohConnect bluetoohConnect = new BluetoohConnect();
     private SectionsPageAdapter sPageAdapter;
     private ViewPager vP;
-    private BluetoothAdapter bt;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         comprobarBluetooth();
-        habilitarBluetooth();
+        bluetoohConnect.habilitarBluetooth();
         setContentView(R.layout.activity_main);
 
         sPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
@@ -36,8 +33,14 @@ public class MainActivity extends AppCompatActivity {
         tabs.setupWithViewPager(vP);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        bluetoohConnect.habilitarBluetooth();  // volver a activar bluetooth
+    }
 
 
+    // Este método configura el menú de la aplicación
     private void configurarViewPager(ViewPager viewPager){
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new ChatsFragment(), "Chats");
@@ -46,9 +49,11 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
     }
 
+
+    // Mostrará mensaje de error y cerrará la app si no soporta bluetooth
     public void comprobarBluetooth(){
-        bt =  new BluetoohConnect().getBluetoothAdapter();
-        if ( bt == null) {
+        boolean soportaBluetooth =  new BluetoohConnect().comprobarBluetooth();
+        if (!soportaBluetooth) {
             new AlertDialog.Builder(this)
                     .setTitle("Lo sentimos!")
                     .setMessage("Su dispositivo no soporta Bluetooth")
@@ -57,12 +62,6 @@ public class MainActivity extends AppCompatActivity {
                             System.exit(0);
                         }
                     }).show();
-        }
-    }
-
-    public void habilitarBluetooth(){
-        if (!bt.isEnabled()) {
-            bt.enable();
         }
     }
 }
