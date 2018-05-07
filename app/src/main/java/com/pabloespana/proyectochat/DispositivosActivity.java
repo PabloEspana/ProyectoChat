@@ -42,10 +42,9 @@ public class DispositivosActivity extends AppCompatActivity {
 
         IntentFilter intentFilter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         registerReceiver(myReciever, intentFilter);
-        mostrarDispositivos();
+        buscarDispositivos();
         adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, dispositivos);
         listaDisponibles.setAdapter(adapter);
-
     }
 
     @Override
@@ -55,12 +54,18 @@ public class DispositivosActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        bluetooth.cancelDiscovery();
+    }
+
+    @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return false;
     }
 
-    public void mostrarDispositivos(){
+    public void buscarDispositivos(){
         if (bluetooth.isDiscovering()) {
             bluetooth.cancelDiscovery();
         }
@@ -72,7 +77,7 @@ public class DispositivosActivity extends AppCompatActivity {
             String action = intent.getAction();
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 BluetoothDevice dispositivo = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                dispositivos.add(dispositivo.getName());
+                dispositivos.add(dispositivo.getName() + "\n" + dispositivo.getAddress());
                 adapter.notifyDataSetChanged();
             }
         }

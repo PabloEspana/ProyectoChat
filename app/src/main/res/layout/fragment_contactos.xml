@@ -17,6 +17,9 @@
     <ListView
         android:id="@+id/listaContacto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textSize="18sp"
+        />
 
 </FrameLayout>
