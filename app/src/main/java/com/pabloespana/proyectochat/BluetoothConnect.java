@@ -4,13 +4,13 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import java.util.Set;
 
-public class BluetoohConnect {
+public class BluetoothConnect {
 
     private BluetoothAdapter bluetoothAdapter;
     private Set<BluetoothDevice> Dispositivos;
     private BluetoothAdapter bluetooth = BluetoothAdapter.getDefaultAdapter();
 
-    public BluetoohConnect() {
+    public BluetoothConnect() {
         this.bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
     }
 

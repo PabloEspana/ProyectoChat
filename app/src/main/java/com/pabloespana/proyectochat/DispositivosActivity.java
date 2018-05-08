@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class DispositivosActivity extends AppCompatActivity {
 
-    BluetoohConnect bluetoohConnect = new BluetoohConnect();
+    BluetoothConnect bluetoothConnect = new BluetoothConnect();
     ListView listaDisponibles;
     ArrayList<String> dispositivos;
     ArrayAdapter<String> adapter;
@@ -27,7 +27,7 @@ public class DispositivosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bluetoohConnect.habilitarBluetooth();
+        bluetoothConnect.habilitarBluetooth();
         setContentView(R.layout.activity_dispositivos);
 
         // Adding Toolbar to Main screen
@@ -50,7 +50,7 @@ public class DispositivosActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        bluetoohConnect.habilitarBluetooth();
+        bluetoothConnect.habilitarBluetooth();
     }
 
     @Override
@@ -59,12 +59,15 @@ public class DispositivosActivity extends AppCompatActivity {
         bluetooth.cancelDiscovery();
     }
 
+    // Regresa a la pantalla anterior al presionar la flecha
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return false;
     }
 
+
+    // Empieza a descubrir dispositivos bluetooth
     public void buscarDispositivos(){
         if (bluetooth.isDiscovering()) {
             bluetooth.cancelDiscovery();
@@ -75,7 +78,7 @@ public class DispositivosActivity extends AppCompatActivity {
     private final BroadcastReceiver myReciever = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+            if (BluetoothDevice.ACTION_FOUND.equals(action)) { // acción de haber encontrado
                 BluetoothDevice dispositivo = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 dispositivos.add(dispositivo.getName() + "\n" + dispositivo.getAddress());
                 adapter.notifyDataSetChanged();

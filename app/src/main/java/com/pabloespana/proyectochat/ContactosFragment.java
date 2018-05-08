@@ -31,7 +31,7 @@ public class ContactosFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        FloatingActionButton b = (FloatingActionButton ) getView().findViewById(R.id.btnBuscarDispositivos);
+        FloatingActionButton b = (FloatingActionButton) getView().findViewById(R.id.btnBuscarDispositivos);
         b.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -44,7 +44,7 @@ public class ContactosFragment extends Fragment {
     }
 
     public void ListarContactos(){
-        Dispositivos = new BluetoohConnect().getListContactBluetoh();
+        Dispositivos = new BluetoothConnect().getListContactBluetoh();
         Listado = (ListView) getView().findViewById(R.id.listaContacto);
         List<String> ListaDispositivos = new ArrayList<String>();
         for (BluetoothDevice device : Dispositivos){
@@ -52,6 +52,5 @@ public class ContactosFragment extends Fragment {
         }
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_list_item_1, ListaDispositivos );
         Listado.setAdapter(arrayAdapter);
-
     }
 }

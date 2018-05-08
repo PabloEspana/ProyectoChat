@@ -10,7 +10,7 @@ import android.support.v7.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
-    BluetoohConnect bluetoohConnect = new BluetoohConnect();
+    BluetoothConnect bluetoothConnect = new BluetoothConnect();
     private SectionsPageAdapter sPageAdapter;
     private ViewPager vP;
 
@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         comprobarBluetooth();
-        bluetoohConnect.habilitarBluetooth();
+        bluetoothConnect.habilitarBluetooth();
         setContentView(R.layout.activity_main);
 
         sPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        bluetoohConnect.habilitarBluetooth();  // volver a activar bluetooth
+        bluetoothConnect.habilitarBluetooth();  // volver a activar bluetooth
     }
 
 
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Mostrará mensaje de error y cerrará la app si no soporta bluetooth
     public void comprobarBluetooth(){
-        boolean soportaBluetooth =  new BluetoohConnect().comprobarBluetooth();
+        boolean soportaBluetooth =  new BluetoothConnect().comprobarBluetooth();
         if (!soportaBluetooth) {
             new AlertDialog.Builder(this)
                     .setTitle("Lo sentimos!")
