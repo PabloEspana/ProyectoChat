@@ -1,7 +1,11 @@
 package com.pabloespana.proyectochat;
 
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
+import android.view.Gravity;
+import android.widget.Toast;
+
 import java.util.Set;
 
 public class BluetoothConnect {
@@ -18,7 +22,7 @@ public class BluetoothConnect {
         return bluetoothAdapter;
     }
 
-    // Comprueba de que existe bluetooth en el dispositivo
+    // Comprueba que el dispositivo admite bluetooth
     public boolean comprobarBluetooth(){
         boolean soportaBluetooth = true;
         if ( bluetooth == null) {

@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         if (!soportaBluetooth) {
             new AlertDialog.Builder(this)
                     .setTitle("Lo sentimos!")
-                    .setMessage("Su dispositivo no soporta Bluetooth")
+                    .setMessage("Su dispositivo no admite Bluetooth")
                     .setPositiveButton("Salir", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             System.exit(0);
