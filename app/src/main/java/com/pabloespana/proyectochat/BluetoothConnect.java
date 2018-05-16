@@ -1,10 +1,8 @@
 package com.pabloespana.proyectochat;
 
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
-import android.view.Gravity;
-import android.widget.Toast;
+
 
 import java.util.Set;
 

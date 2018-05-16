@@ -10,16 +10,18 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 
-public class ContactosFragment extends Fragment {
+public class ContactosFragment extends Fragment implements AbsListView.OnItemClickListener{
     Set<BluetoothDevice> Dispositivos;
+    ArrayList<BTDevice> DevicesList;
     ListView Listado;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,11 +48,23 @@ public class ContactosFragment extends Fragment {
     public void ListarContactos(){
         Dispositivos = new BluetoothConnect().getListContactBluetoh();
         Listado = (ListView) getView().findViewById(R.id.listaContacto);
+        DevicesList = new ArrayList<BTDevice>();
         List<String> ListaDispositivos = new ArrayList<String>();
         for (BluetoothDevice device : Dispositivos){
-            ListaDispositivos.add(device.getName()+"\n"+device.getAddress());
+            DevicesList.add(new BTDevice(device,false));
+            ListaDispositivos.add(device.getName());
         }
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_list_item_1, ListaDispositivos );
         Listado.setAdapter(arrayAdapter);
+        Listado.setOnItemClickListener(this);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        BTDevice dev = DevicesList.get(i);
+        Intent intent = new Intent(getActivity(), activity_new_chat.class);
+        intent.putExtra("Direccion",dev.getAddress());
+        intent.putExtra("Nombre",dev.getDeviceName());
+        getActivity().startActivity(intent);
     }
 }
