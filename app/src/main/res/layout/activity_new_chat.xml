@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_new_chat">
+    tools:context=".ChatActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,12 +28,14 @@
             android:layout_height="match_parent">
 
             <ScrollView
+                android:id="@+id/ScrollChat"
                 android:layout_width="match_parent"
                 android:layout_height="515dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true">
 
                 <LinearLayout
+                    android:id="@+id/layoutScrollChat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" />
@@ -49,13 +51,13 @@
                 android:inputType="textPersonName" />
 
             <ImageButton
-                android:id="@+id/btnSend"
+                android:id="@+id/buttonSend"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
-                android:src="@android:drawable/ic_media_play"
-                android:contentDescription="TODO" />
+                android:contentDescription="TODO"
+                android:src="@android:drawable/ic_media_play" />
         </RelativeLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

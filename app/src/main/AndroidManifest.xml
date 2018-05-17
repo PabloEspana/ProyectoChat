@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".DispositivosActivity" />
-        <activity android:name=".activity_new_chat"></activity>
+        <activity android:name=".ChatActivity"></activity>
     </application>
 
 </manifest>

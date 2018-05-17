@@ -2,7 +2,6 @@ package com.pabloespana.proyectochat;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -25,7 +24,7 @@ import java.util.Set;
 public class ContactosFragment extends Fragment implements AbsListView.OnItemClickListener{
 
     Set<BluetoothDevice> Dispositivos;
-    ArrayList<BTDevice> DevicesList;
+    ArrayList<BTDevice> DevicesList = new ArrayList<BTDevice>();
     ListView Listado;
     List<String> ListaDispositivos = new ArrayList<String>();
 
@@ -54,7 +53,7 @@ public class ContactosFragment extends Fragment implements AbsListView.OnItemCli
         ListaDispositivos.clear();
         Dispositivos = new BluetoothConnect().getListContactBluetooth();
         Listado = (ListView) getView().findViewById(R.id.listaContacto);
-        DevicesList = new ArrayList<BTDevice>();
+        DevicesList.clear();
 
         for (BluetoothDevice device : Dispositivos){
             DevicesList.add(new BTDevice(device,false, R.drawable.foto1));
@@ -85,7 +84,7 @@ public class ContactosFragment extends Fragment implements AbsListView.OnItemCli
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         BTDevice dev = DevicesList.get(i);
-        Intent intent = new Intent(getActivity(), activity_new_chat.class);
+        Intent intent = new Intent(getActivity(), ChatActivity.class);
         intent.putExtra("Direccion",dev.getAddress());
         intent.putExtra("Nombre",dev.getDeviceName());
         getActivity().startActivity(intent);

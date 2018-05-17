@@ -7,7 +7,7 @@
     <color name="colorPrimary">#e91e63</color>
     <color name="colorPrimaryDark">#C2185B</color>
     <color name="colorPrimaryLight">#F8BBD0</color>
-
+    <color name="Black">#000000</color>
     <color name="colorAccent">#aa00ff</color>
     <!--<color name="colorAccentDark">#7200ca</color>
     <color name="colorAccentLight">#e254ff</color>
