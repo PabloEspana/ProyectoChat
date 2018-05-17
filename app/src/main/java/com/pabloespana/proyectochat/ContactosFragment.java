@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
@@ -48,26 +49,28 @@ public class ContactosFragment extends Fragment implements AbsListView.OnItemCli
     }
 
     public void ListarContactos(){
-
         Dispositivos = new BluetoothConnect().getListContactBluetooth();
         Listado = (ListView) getView().findViewById(R.id.listaContacto);
         DevicesList = new ArrayList<BTDevice>();
         List<String> ListaDispositivos = new ArrayList<String>();
 
         for (BluetoothDevice device : Dispositivos){
-            DevicesList.add(new BTDevice(device,false));
+            DevicesList.add(new BTDevice(device,false, R.drawable.pablo));
             ListaDispositivos.add(device.getName());
         }
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),
                 android.R.layout.simple_list_item_1, ListaDispositivos )
-        { // En este metodo se soluciona el color de texto
+        { // Muestra la lista de dispositivos con su una imagen
             @Override
             public View getView(int position, View convertView, ViewGroup parent){
-                View view = super.getView(position, convertView, parent);
-                TextView tv = (TextView) view.findViewById(android.R.id.text1);
-                tv.setTextColor(Color.BLACK);
-                return view;
+                LayoutInflater inflater = getActivity().getLayoutInflater();
+                View item = inflater.inflate(R.layout.list_contactos, null);
+                TextView textView1 = (TextView)item.findViewById(R.id.nombre);
+                textView1.setText("Contacto");
+                ImageView imageView1 = (ImageView)item.findViewById(R.id.foto);
+                imageView1.setImageResource(R.drawable.pablo);
+                return(item);
             }
         };
 

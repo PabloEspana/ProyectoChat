@@ -8,12 +8,14 @@ public class BTDevice {
     private String deviceName;
     private String address;
     private boolean connected;
+    private int foto;
 
-    public BTDevice(BluetoothDevice dispositivo, boolean connect) {
+    public BTDevice(BluetoothDevice dispositivo, boolean connect, int foto) {
         this.Dispositivo = dispositivo;
         this.deviceName = dispositivo.getName();
         this.address = dispositivo.getAddress();
         this.connected = connect;
+        this.foto = foto;
     }
 
     public String getDeviceName() {
@@ -34,5 +36,13 @@ public class BTDevice {
 
     public BluetoothDevice getDevice(){
         return Dispositivo;
+    }
+
+    public int getFoto() {
+        return foto;
+    }
+
+    public void setFoto(int foto) {
+        this.foto = foto;
     }
 }
