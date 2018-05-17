@@ -3,12 +3,13 @@ package com.pabloespana.proyectochat;
 import android.bluetooth.BluetoothDevice;
 
 public class BTDevice {
+
     private BluetoothDevice Dispositivo;
     private String deviceName;
     private String address;
     private boolean connected;
 
-    public BTDevice(BluetoothDevice dispositivo,boolean connect) {
+    public BTDevice(BluetoothDevice dispositivo, boolean connect) {
         this.Dispositivo = dispositivo;
         this.deviceName = dispositivo.getName();
         this.address = dispositivo.getAddress();

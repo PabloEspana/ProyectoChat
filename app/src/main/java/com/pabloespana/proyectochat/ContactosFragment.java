@@ -1,6 +1,5 @@
 package com.pabloespana.proyectochat;
 
-
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,7 +15,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -50,15 +48,19 @@ public class ContactosFragment extends Fragment implements AbsListView.OnItemCli
     }
 
     public void ListarContactos(){
+
         Dispositivos = new BluetoothConnect().getListContactBluetooth();
         Listado = (ListView) getView().findViewById(R.id.listaContacto);
         DevicesList = new ArrayList<BTDevice>();
         List<String> ListaDispositivos = new ArrayList<String>();
+
         for (BluetoothDevice device : Dispositivos){
             DevicesList.add(new BTDevice(device,false));
             ListaDispositivos.add(device.getName());
         }
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_list_item_1, ListaDispositivos )
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),
+                android.R.layout.simple_list_item_1, ListaDispositivos )
         { // En este metodo se soluciona el color de texto
             @Override
             public View getView(int position, View convertView, ViewGroup parent){
@@ -68,6 +70,7 @@ public class ContactosFragment extends Fragment implements AbsListView.OnItemCli
                 return view;
             }
         };
+
         Listado.setAdapter(arrayAdapter);
         Listado.setOnItemClickListener(this);
     }
