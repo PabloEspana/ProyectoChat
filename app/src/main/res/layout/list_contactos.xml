@@ -10,13 +10,13 @@
         android:id="@+id/foto"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@drawable/pablo"
+        android:src="@drawable/foto1"
         android:layout_marginTop="4dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom='4dp'
         app:civ_border_width="2dp"
-        app:civ_border_color="#000"/>
+        app:civ_border_color="@color/colorPrimaryDark"/>
 
 
     <TextView

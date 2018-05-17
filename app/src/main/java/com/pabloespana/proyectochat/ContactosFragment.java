@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 
@@ -26,6 +27,7 @@ public class ContactosFragment extends Fragment implements AbsListView.OnItemCli
     Set<BluetoothDevice> Dispositivos;
     ArrayList<BTDevice> DevicesList;
     ListView Listado;
+    List<String> ListaDispositivos = new ArrayList<String>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,13 +51,13 @@ public class ContactosFragment extends Fragment implements AbsListView.OnItemCli
     }
 
     public void ListarContactos(){
+        ListaDispositivos.clear();
         Dispositivos = new BluetoothConnect().getListContactBluetooth();
         Listado = (ListView) getView().findViewById(R.id.listaContacto);
         DevicesList = new ArrayList<BTDevice>();
-        List<String> ListaDispositivos = new ArrayList<String>();
 
         for (BluetoothDevice device : Dispositivos){
-            DevicesList.add(new BTDevice(device,false, R.drawable.pablo));
+            DevicesList.add(new BTDevice(device,false, R.drawable.foto1));
             ListaDispositivos.add(device.getName());
         }
 
@@ -64,16 +66,18 @@ public class ContactosFragment extends Fragment implements AbsListView.OnItemCli
         { // Muestra la lista de dispositivos con su una imagen
             @Override
             public View getView(int position, View convertView, ViewGroup parent){
+                Random rgenerador = new Random();
+                Integer[] imagenesID = {R.drawable.foto1, R.drawable.foto2, R.drawable.foto3,};
+                int resource = imagenesID[rgenerador.nextInt(imagenesID.length)];
                 LayoutInflater inflater = getActivity().getLayoutInflater();
                 View item = inflater.inflate(R.layout.list_contactos, null);
                 TextView textView1 = (TextView)item.findViewById(R.id.nombre);
-                textView1.setText("Contacto");
+                textView1.setText(ListaDispositivos.get(position));
                 ImageView imageView1 = (ImageView)item.findViewById(R.id.foto);
-                imageView1.setImageResource(R.drawable.pablo);
+                imageView1.setImageResource(resource);
                 return(item);
             }
         };
-
         Listado.setAdapter(arrayAdapter);
         Listado.setOnItemClickListener(this);
     }
