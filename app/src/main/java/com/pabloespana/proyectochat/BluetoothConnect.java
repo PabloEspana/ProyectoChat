@@ -29,7 +29,7 @@ public class BluetoothConnect {
         return soportaBluetooth;
     }
 
-    // Hsabilita el bluetooth en caso de no estarlo
+    // Habilita el bluetooth en caso de no estarlo
     public void habilitarBluetooth(){
         if (!bluetooth.isEnabled()){
             bluetooth.enable();
@@ -37,7 +37,7 @@ public class BluetoothConnect {
     }
 
     // Retorna la lista de dispositivos emparejados.
-    public Set<BluetoothDevice> getListContactBluetoh (){
+    public Set<BluetoothDevice> getListContactBluetooth (){
         Dispositivos =  this.bluetoothAdapter.getBondedDevices();
         return Dispositivos;
     }
