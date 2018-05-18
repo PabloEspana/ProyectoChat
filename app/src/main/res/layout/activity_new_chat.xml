@@ -26,21 +26,28 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <ScrollView
-                android:id="@+id/ScrollChat"
+
+            <LinearLayout
+                android:id="@+id/layoutScrollChat"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_above="@id/buttonSend"
                 android:layout_alignParentLeft="true"
-                >
-                <LinearLayout
-                    android:id="@+id/layoutScrollChat"
+                android:layout_weight="0.9">
+
+                <ListView
+                    android:id="@+id/list_msg"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" />
-            </ScrollView>
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/cardview_default_elevation"
+                    android:divider="@null"
+                    android:listSelector="@android:color/transparent"
+                    android:transcriptMode="alwaysScroll" />
+
+            </LinearLayout>
+
             <EditText
                 android:id="@+id/txtMsg"
                 android:layout_width="wrap_content"

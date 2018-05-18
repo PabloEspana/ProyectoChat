@@ -13,14 +13,19 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -43,6 +48,10 @@ public class ChatActivity extends AppCompatActivity {
     int REQUEST_ENABLE_BLUETOOH=1;
     private static String APP_NAME = "Proyecto Chat";
     private  static UUID MY_UUID = UUID.fromString("5841695d-8715-4a8e-b380-6965e002ee97");
+
+    private ListView listView;
+    private List<ChatMessage> chatMessages = new ArrayList<>();
+    private ArrayAdapter<ChatMessage> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,16 +101,19 @@ public class ChatActivity extends AppCompatActivity {
             Log.d("Cliente","Conectando");
         }
 
+        listView = (ListView) findViewById(R.id.list_msg);
+        adapter = new MessageAdapter(this, R.layout.item_chat_left, chatMessages);
+        listView.setAdapter(adapter);
+
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String text =  txtMsg.getText().toString() ;//"Hola mundo";
-                if (text.equals("")){
+                if (text.trim().equals("")){
                     Log.i("Mensaje","Vacío");
+                    Toast.makeText(ChatActivity.this, "No envies memnsajes vacios!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-                Log.i("Mensaje",text);
                 sendRecive.write(text.getBytes());
             }
         });
@@ -113,16 +125,10 @@ public class ChatActivity extends AppCompatActivity {
         onBackPressed();
         return false;
     }
-/*
-    private class Thread2 extends Thread {
-        @Override
-        public void run() {
-            super.run();
-        }
-    }
-    */
+
     @SuppressLint("ResourceAsColor")
-    public void ActualizarAmbasPantalla(String msg){
+    public void ActualizarAmbasPantalla(String msg,boolean isMine){
+        /*
         TextView valueTV = new TextView(getApplicationContext());
         valueTV.setText(msg);
         valueTV.setTextColor(R.color.Black);
@@ -133,6 +139,12 @@ public class ChatActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT
         ));
         linearLayout.addView(valueTV);
+        */
+        Log.i("Mine",""+isMine);
+        ChatMessage chatMessage = new ChatMessage(msg, isMine);
+        Log.i("Mine",""+chatMessage.isMine());
+        chatMessages.add(chatMessage);
+        adapter.notifyDataSetChanged();
     }
 
     Handler handler = new Handler(new Handler.Callback() {
@@ -155,8 +167,8 @@ public class ChatActivity extends AppCompatActivity {
                 case STATE_MESSAGE_RECEIVED:
                     byte[] readBuff = (byte[]) msg.obj;
                     String tempMSG = new String(readBuff,0,msg.arg1);
-                    String MSG = BTName+" dice:\n"+tempMSG;
-                    ActualizarAmbasPantalla(MSG);
+                    String MSG = tempMSG;
+                    ActualizarAmbasPantalla(MSG,true);
                     //txtMsg.setText("");
                     break;
             }
@@ -278,8 +290,8 @@ public class ChatActivity extends AppCompatActivity {
         {
             try {
                 outputStream.write(bytes);
-                String MSG = BTLocalName+" dice:\n"+(txtMsg.getText().toString());
-                ActualizarAmbasPantalla(MSG);
+                String MSG = txtMsg.getText().toString();
+                ActualizarAmbasPantalla(MSG,false);
                 txtMsg.setText("");
             } catch (IOException e) {
                 e.printStackTrace();
