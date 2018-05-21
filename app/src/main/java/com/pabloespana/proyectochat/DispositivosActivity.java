@@ -39,7 +39,7 @@ public class DispositivosActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Buscando Dispositvos...");
+        getSupportActionBar().setTitle("Buscando Dispositivos...");
 
         listaDisponibles = (ListView) findViewById(R.id.listViewDispositiovs);
         dispositivos = new ArrayList<String>();
