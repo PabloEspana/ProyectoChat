@@ -57,25 +57,30 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_chat);
-        //Se obtiene los parametros Extras enviados desde otro activity
-        //y se guarda en las variables correspondientes
+
+        // Se obtiene los parametros Extras enviados desde otro activity
         BTAddres = getIntent().getStringExtra("Direccion");
         BTName = getIntent().getStringExtra("Nombre");
-        linearLayout =(LinearLayout)findViewById(R.id.layoutScrollChat);
+
         btnSend =(ImageButton)findViewById(R.id.buttonSend);
         txtMsg = (EditText)findViewById(R.id.txtMsg);
+
+        linearLayout =(LinearLayout)findViewById(R.id.layoutScrollChat);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarMsg);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(BTName);
+
         BluetoothConnect BT =  new BluetoothConnect();
         BTAdapter = BT.getBluetoothAdapter();
         if(!BTAdapter.isEnabled()){
             Intent enableBluetooth = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBluetooth, REQUEST_ENABLE_BLUETOOH);
         }
-        BTLocalName = BTAdapter.getName();
+
+        BTLocalName = BTAdapter.getName(); // Mi nombre
         Dispositivos = BT.getListContactBluetooth();
         ServerClass servidor = null;
         try {
@@ -108,7 +113,7 @@ public class ChatActivity extends AppCompatActivity {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text =  txtMsg.getText().toString() ;//"Hola mundo";
+                String text =  txtMsg.getText().toString() ;
                 if (text.trim().equals("")){
                     Log.i("Mensaje","Vacío");
                     Toast.makeText(ChatActivity.this, "No envies memnsajes vacios!", Toast.LENGTH_SHORT).show();
@@ -128,18 +133,6 @@ public class ChatActivity extends AppCompatActivity {
 
     @SuppressLint("ResourceAsColor")
     public void ActualizarAmbasPantalla(String msg,boolean isMine){
-        /*
-        TextView valueTV = new TextView(getApplicationContext());
-        valueTV.setText(msg);
-        valueTV.setTextColor(R.color.Black);
-        valueTV.setTextSize(16);
-        //valueTV.setTextColor(Color.parseColor("#FF0000"));
-        valueTV.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        ));
-        linearLayout.addView(valueTV);
-        */
         Log.i("Mine",""+isMine);
         ChatMessage chatMessage = new ChatMessage(msg, isMine);
         Log.i("Mine",""+chatMessage.isMine());
@@ -175,7 +168,6 @@ public class ChatActivity extends AppCompatActivity {
             return true;
         }
     });
-
 
     private class ServerClass extends Thread
     {

@@ -1,32 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChatsFragment">
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btnNuevaConversacion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="25sp"
-        android:tint="@android:color/white"
-        android:src="@drawable/add" />
+    tools:context=".NuevoChatActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/conversacion1"
-        android:paddingTop="12dp"
-        >
+        android:id="@+id/disponible"
+        android:paddingTop="12dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/imagenChat"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/foto2"
+            android:src="@drawable/foto3"
             android:layout_marginTop="4dp"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
@@ -40,10 +31,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="11dp"
-            android:text="Andy Castillo"
+            android:text="Francisco Bermello"
             android:textSize="20dp" >
         </TextView>
 
-    </LinearLayout>
+</LinearLayout>
 
-</FrameLayout>
+</android.support.constraint.ConstraintLayout>
